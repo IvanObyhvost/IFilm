@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StoreService } from 'src/app/services/store/store.service';
+import { Film } from 'src/app/models/film/film';
 
 @Component({
   selector: 'app-favorite-films',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favorite-films.component.scss']
 })
 export class FavoriteFilmsComponent implements OnInit {
-
-  constructor() { }
+  public films: Film[] = [];
+  constructor(private storeService: StoreService) { }
 
   ngOnInit() {
+    this.storeService.FavoriteFilms.subscribe(favoriteFilms => this.films = favoriteFilms);
   }
 
 }

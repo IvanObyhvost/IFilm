@@ -1,0 +1,4 @@
+<div class="lds-hourglass" *ngIf="isLoading; else content"></div>
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>

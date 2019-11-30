@@ -7,15 +7,16 @@ const key = 'favoriteFilms';
 @Injectable({
   providedIn: 'root'
 })
-export class StoreService implements OnInit{
-  
+export class StoreService {
   private favoriteFilms: Film[] = [];
   private favoriteFilmsEvent = new BehaviorSubject<Film[]>([]);
   private films: Film[] = [];
+  private filmsEvent = new BehaviorSubject<Film[]>([]);
+  private isLoading = new BehaviorSubject<boolean>(false);
   constructor(private filmService: FilmService) { 
-    
+    this.getFavoriteFilmsFromLocalStorage();
   }
-  ngOnInit(): void {
+  private getFavoriteFilmsFromLocalStorage() {
     try {
       const data = localStorage.getItem(key);
       this.favoriteFilms = JSON.parse(data) || [];
@@ -28,28 +29,46 @@ export class StoreService implements OnInit{
   getTopFilms(limit: number) {
     return this.filmService.get(limit).pipe(
       map(response => {
-        this.films = response;
+        this.films = response.map(film => {
+          film.isFavorite = this.favoriteFilms.some(favoriteFilm => 
+            favoriteFilm.id === film.id);
+          return film;
+        });
         return this.films;
       })
     )
   }
 
   get FavoriteFilms() {
-    return this.favoriteFilms;
+    return this.favoriteFilmsEvent;
   }
 
   toggleFavoriteFilm(id: number) {
-    const favoriteFilm = this.favoriteFilms.find(film => film.id === id);
-    if (favoriteFilm) {
-      this.favoriteFilms = this.favoriteFilms.filter(film => film.id !== id);
-    } else {
-      const film = this.films.find(film => film.id === id);
-      if (film) {
+    const film = this.films.find(film => film.id === id);
+    if (film) {
+      const favoriteFilm = this.favoriteFilms.find(film => film.id === id);
+      if (favoriteFilm) {
+        this.favoriteFilms = this.favoriteFilms.filter(film => film.id !== id);
+        film.isFavorite = false;
+      } else {
         this.favoriteFilms = [...this.favoriteFilms, film];
+        film.isFavorite = true;
       }
+      localStorage.setItem(key, JSON.stringify(this.favoriteFilms));
+      this.favoriteFilmsEvent.next(this.favoriteFilms);
+      this.filmsEvent.next(this.films);
     }
-    localStorage.setItem(key, JSON.stringify(this.favoriteFilms));
-    this.favoriteFilmsEvent.next(this.favoriteFilms);
   }
 
+  setIsLoading(value: boolean) {
+    this.isLoading.next(value);
+  }
+
+  get IsLoading() {
+    return this.isLoading;
+  }
+
+  get Films() {
+    return this.filmsEvent;
+  }
 }
