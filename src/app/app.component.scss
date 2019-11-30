@@ -4,4 +4,15 @@
     align-items: center;
     padding: 10px 15px;
     margin: auto;
+    padding-top: 45px;
+    .page {
+        width: 30%;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .container {
+        .page {
+            width: 80%;
+        }
+    }
 }
