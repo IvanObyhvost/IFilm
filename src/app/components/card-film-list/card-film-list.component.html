@@ -1,0 +1,8 @@
+<div *ngIf="films?.length; else empty">
+    <div *ngFor="let film of films">
+        <app-card-film [film]="film"></app-card-film>
+    </div>
+</div>
+<ng-template #empty>
+    {{message}}
+</ng-template>
