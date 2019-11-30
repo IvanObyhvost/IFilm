@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Film } from 'src/app/models/film/film';
+import { StoreService } from 'src/app/services/store/store.service';
 
 @Component({
   selector: 'app-card-film',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-film.component.scss']
 })
 export class CardFilmComponent implements OnInit {
-
-  constructor() { }
+  @Input() film: Film;
+  constructor(private storeService: StoreService) { }
 
   ngOnInit() {
   }
 
+  onClickFavorite(id: number) {
+    this.storeService.toggleFavoriteFilm(id);
+  }
 }
