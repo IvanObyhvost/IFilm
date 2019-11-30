@@ -15,13 +15,16 @@ export class MenuComponent implements OnInit {
   getMenuItems() {
     return [
       {
-        name: 'Top 20 films'
+        name: 'Top 20 films',
+        link: 'top'
       },
       {
-        name: 'Movies for decades'
+        name: 'Movies for decades',
+        link: 'decades'
       },
       {
-        name: 'Favourite films'
+        name: 'Favorite films',
+        link: 'favorite'
       }
     ]
   }
