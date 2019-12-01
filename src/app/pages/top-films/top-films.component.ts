@@ -17,10 +17,11 @@ export class TopFilmsComponent implements OnInit {
 
   ngOnInit() {
     this.storeService.setIsLoading(true);
-    this.storeService.getTopFilms(this.limit).subscribe(films => {
+    this.storeService.Films.subscribe(films => {
       this.films = films;
-      this.storeService.setIsLoading(false);
+      if (this.storeService.IsLoading) {
+        this.storeService.setIsLoading(false);
+      }
     });
-    this.storeService.Films.subscribe(films => this.films = films);
   }
 }

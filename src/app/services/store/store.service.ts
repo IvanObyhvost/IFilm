@@ -70,4 +70,9 @@ export class StoreService {
   get Films() {
     return this.filmsEvent;
   }
+
+  setFilms(films: Film[]) {
+    this.films = films;
+    this.filmsEvent.next(films);
+  }
 }
