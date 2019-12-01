@@ -31,24 +31,23 @@ export class StoreService {
       map(response => {
         this.films = response.map(film => {
           film.isFavorite = this.favoriteFilms.some(favoriteFilm => 
-            favoriteFilm.id === film.id);
+            favoriteFilm.ranking === film.ranking);
           return film;
         });
         return this.films;
       })
     )
   }
-
   get FavoriteFilms() {
     return this.favoriteFilmsEvent;
   }
 
-  toggleFavoriteFilm(id: number) {
-    const film = this.films.find(film => film.id === id);
+  toggleFavoriteFilm(ranking: number) {
+    const film = this.films.find(film => film.ranking === ranking);
     if (film) {
-      const favoriteFilm = this.favoriteFilms.find(film => film.id === id);
+      const favoriteFilm = this.favoriteFilms.find(film => film.ranking === ranking);
       if (favoriteFilm) {
-        this.favoriteFilms = this.favoriteFilms.filter(film => film.id !== id);
+        this.favoriteFilms = this.favoriteFilms.filter(film => film.ranking !== ranking);
         film.isFavorite = false;
       } else {
         this.favoriteFilms = [...this.favoriteFilms, film];

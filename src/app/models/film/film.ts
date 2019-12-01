@@ -1,11 +1,14 @@
 export class Film {
-    id: number;
+    ranking: number;
     title: string;
     year: number;
-    rate: number;
-    country: string;
-    imageUrl: string;
-    genre: string;
-    director: string;
+    rating: number;
+    countries: string[];
+    urlPoster: string;
+    genres: string[];
+    directors: [{
+        id: string;
+        name: string;
+    }];
     isFavorite: boolean;
 }

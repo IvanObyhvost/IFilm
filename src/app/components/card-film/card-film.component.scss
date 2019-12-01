@@ -44,8 +44,14 @@
         flex: 1;
     }
     &-director {
-        span {
-            cursor: pointer;
+        cursor: pointer;
+        text-decoration: underline;
+        &:hover {
+            color: rgb(150, 50, 255);
         }
+    }
+    &-buttons {
+        display: flex;
+        justify-content: flex-end;
     }
 }

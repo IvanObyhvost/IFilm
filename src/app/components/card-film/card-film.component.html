@@ -1,15 +1,12 @@
 <div class="card-film" *ngIf="film">
     <div class="card-film-image">
-        <img [src]="film.imageUrl">
+        <img [src]="film.urlPoster">
     </div>
     <div class="card-film-body">
         <div class="card-film-title">
             <span>{{film.title}}</span>
-            <div class="card-film-favorite" 
-                (click)="onClickFavorite(film.id)" 
-            >
-                <svg-icon src="assets/images/icon-favorite.svg" 
-                    [svgStyle]="{ 
+            <div class="card-film-favorite" (click)="onClickFavorite(film.ranking)">
+                <svg-icon src="assets/images/icon-favorite.svg" [svgStyle]="{ 
                         'width.px': 20, 
                         'height.px': 20,
                         'fill': film.isFavorite ? 'rgb(150,50,255)' : 'rgb(21,24,25)'
@@ -18,19 +15,28 @@
             </div>
         </div>
         <div class="card-film-year">
-            Год выпуска: {{film.year}}
+            Year: {{film.year}}
         </div>
         <div class="card-film-rate">
-            Рейтинг: {{film.rate}}
+            Rating: {{film.rating}}
         </div>
         <div class="card-film-genre">
-            Жанр: {{film.genre}}
+            Genres: {{film.genres.join(', ')}}
         </div>
         <div class="card-film-country">
-            Страна: {{film.country}}
+            Countries: {{film.countries.join(', ')}}
         </div>
-        <div class="card-film-director">
-            Режисер: <span>{{film.director}}</span> 
+        <div class="card-film-directors">
+            Directors:
+            <span *ngFor="let director of film.directors" 
+                class="card-film-director"
+                (click)="linkForDirector(director.id)"
+            >
+                {{director.name}}
+            </span>
         </div>
+        <!-- <div class="card-film-buttons">
+            <button>Trailer</button>
+        </div> -->
     </div>
 </div>
