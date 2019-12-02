@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Film } from 'src/app/models/film/film';
 
 @Component({
@@ -9,6 +9,7 @@ import { Film } from 'src/app/models/film/film';
 export class CardFilmListComponent  {
   @Input() message: string;
   @Input() films: Film[];
+  @Input() checkFavorite = false;
   constructor() { }
 
 }
