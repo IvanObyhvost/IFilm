@@ -2,8 +2,11 @@ import { Injectable, OnInit } from '@angular/core';
 import { Film } from 'src/app/models/film/film';
 import { BehaviorSubject, of } from 'rxjs';
 import { FilmService } from '../film/film.service';
-import { map } from 'rxjs/operators';
-const key = 'favoriteFilms';
+import { map, catchError } from 'rxjs/operators';
+const keys = {
+  films: 'films',
+  favoriteFilms: 'favoriteFilms'
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +19,7 @@ export class StoreService {
   }
   private getFavoriteFilmsFromLocalStorage() {
     try {
-      const data = localStorage.getItem(key);
+      const data = localStorage.getItem(keys.favoriteFilms);
       this.favoriteFilms = JSON.parse(data) || [];
     } catch (error) {
       this.favoriteFilms = [];
@@ -30,7 +33,15 @@ export class StoreService {
           film.isFavorite = this.favoriteFilms.some(ranking => ranking === film.ranking);
           return film;
         });
+        localStorage.setItem(keys.films, JSON.stringify(this.films));
         return this.films;
+      }),
+      catchError(err => {
+        return of(JSON.parse(localStorage.getItem(keys.films)));
+      }),
+      map(films => films),
+      catchError(err => {
+        return of([]);
       })
     );
   }
@@ -61,7 +72,7 @@ export class StoreService {
         this.favoriteFilms = [...this.favoriteFilms, selectedFilm.ranking];
         selectedFilm.isFavorite = true;
       }
-      localStorage.setItem(key, JSON.stringify(this.favoriteFilms));
+      localStorage.setItem(keys.favoriteFilms, JSON.stringify(this.favoriteFilms));
     }
   }
 

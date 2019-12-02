@@ -14,10 +14,12 @@ export class FilmService {
     const response = of(data);
     return response.pipe(
       delay(1000),
-      map((response: any) => response.data.movies.map((film: any) => {
+      map((response: any) => {
+        return response.data.movies.map((film: any) => {
           film.isFavorite = false;
           return film;
-        })
+        });
+      }
       )
     )
   }

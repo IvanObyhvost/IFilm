@@ -20,8 +20,6 @@ import { StoreService } from './services/store/store.service';
 import { FilmService } from './services/film/film.service';
 import appRoutes from './app.routes';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +35,7 @@ import appRoutes from './app.routes';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {scrollPositionRestoration: 'enabled'}),
     HttpClientModule,
     AngularSvgIconModule,
     ChartsModule,
