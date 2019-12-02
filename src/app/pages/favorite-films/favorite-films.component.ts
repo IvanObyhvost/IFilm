@@ -9,6 +9,7 @@ import { Film } from 'src/app/models/film/film';
 })
 export class FavoriteFilmsComponent implements OnInit {
   public films: Film[] = [];
+  public message = 'You have not added films to your favorites';
   constructor(private storeService: StoreService) { }
 
   ngOnInit() {

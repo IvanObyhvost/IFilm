@@ -12,7 +12,9 @@ export class DecadesFilmsComponent implements OnInit {
   constructor(private storeService: StoreService) { }
 
   ngOnInit() {
-    this.storeService.Films.subscribe(films => this.films = films);
+    this.storeService.Films.subscribe(films => {
+      this.films = films;
+    });
   }
 
 }
