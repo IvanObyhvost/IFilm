@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from 'src/app/services/store/store.service';
+import { LoaderService } from 'src/app/services/loader/loader.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-loader',
@@ -7,11 +8,11 @@ import { StoreService } from 'src/app/services/store/store.service';
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent implements OnInit {
-  public isLoading = false;
-  constructor(private storeService: StoreService) { }
+  public isLoading: BehaviorSubject<boolean>;
+  constructor(private loaderService: LoaderService) { }
 
   ngOnInit() {
-    this.storeService.IsLoading.subscribe(isLoading => this.isLoading = isLoading);
+    this.isLoading = this.loaderService.IsLoading;
   }
 
 }
