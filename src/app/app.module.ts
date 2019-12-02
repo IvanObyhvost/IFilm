@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ChartsModule } from 'ng2-charts';
 
@@ -14,13 +14,12 @@ import { CardFilmListComponent } from './components/card-film-list/card-film-lis
 import { HttpClientModule } from '@angular/common/http';
 import { DecadesFilmsComponent } from './pages/decades-films/decades-films.component';
 import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
+import { JoinPipe } from './pipes/join/join.pipe';
+import { LoaderService } from './services/loader/loader.service';
+import { StoreService } from './services/store/store.service';
+import { FilmService } from './services/film/film.service';
+import appRoutes from './app.routes';
 
-const appRoutes: Routes = [
-  { path: 'top', component: TopFilmsComponent, pathMatch:'full'},
-  { path: 'decades', component: DecadesFilmsComponent, pathMatch:'full'},
-  { path: 'favorite', component: FavoriteFilmsComponent, pathMatch:'full' },
-  { path: '**', redirectTo: '/top'}
-]
 
 
 @NgModule({
@@ -33,16 +32,21 @@ const appRoutes: Routes = [
     LoaderComponent,
     CardFilmListComponent,
     DecadesFilmsComponent,
-    PieChartComponent
+    PieChartComponent,
+    JoinPipe,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     AngularSvgIconModule,
-    ChartsModule 
+    ChartsModule,
   ],
-  providers: [],
+  providers: [
+    LoaderService,
+    StoreService,
+    FilmService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
