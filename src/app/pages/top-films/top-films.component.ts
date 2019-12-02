@@ -10,18 +10,12 @@ import { StoreService } from 'src/app/services/store/store.service';
 })
 export class TopFilmsComponent implements OnInit {
   public films: Film[];
-  private limit = 5;
   constructor(private storeService: StoreService) {
 
   }
-
   ngOnInit() {
-    this.storeService.setIsLoading(true);
     this.storeService.Films.subscribe(films => {
       this.films = films;
-      if (this.storeService.IsLoading) {
-        this.storeService.setIsLoading(false);
-      }
     });
   }
 }
