@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Film } from 'src/app/models/film/film';
 import { StoreService } from 'src/app/services/store/store.service';
 import { environment } from 'src/environments/environment';
@@ -8,16 +8,12 @@ import { environment } from 'src/environments/environment';
   templateUrl: './card-film.component.html',
   styleUrls: ['./card-film.component.scss']
 })
-export class CardFilmComponent implements OnInit {
+export class CardFilmComponent  {
   @Input() film: Film;
   private directorLink: string;
   constructor(private storeService: StoreService) { 
     this.directorLink = environment.directorLink;
   }
-
-  ngOnInit() {
-  }
-
   onClickFavorite(ranking: number) {
     this.storeService.toggleFavoriteFilm(ranking);
   }
