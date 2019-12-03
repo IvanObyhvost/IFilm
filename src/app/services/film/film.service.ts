@@ -1,10 +1,18 @@
 import { Injectable } from '@angular/core';
-import { of  } from 'rxjs';
-import { take, toArray, delay, map } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { take, toArray, delay, map, catchError } from 'rxjs/operators';
 import { Film } from 'src/app/models/film/film';
-import data from './data';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders()
+};
+
+const keys = {
+  films: 'films',
+  favoriteFilms: 'favoriteFilms'
+};
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +20,37 @@ import { environment } from 'src/environments/environment';
 export class FilmService {
 
   constructor(private http: HttpClient) { }
-  get(limit: number) {
-    const response = of(data);
-    return response.pipe(
-      delay(1000),
+  getTest(start: number = 1, end: number = 20) {
+    return this.http.get('/assets/data/films.json').pipe(
+      delay(1500),
       map((response: any) => {
         return response.data.movies.map((film: any) => {
           film.isFavorite = false;
           return film;
         });
-      }
-      )
+      })
     )
   }
+
   getFilms(start: number = 1, end: number = 20) {
-    return this.http.get(`${environment.api}top/?start=${start}&end=${end}&token=${environment.token}&format=json`).pipe(
-      map((response : any)=> {
+    httpOptions.headers.set('Origin', '')
+    return this.http.get(`https://cors-anywhere.herokuapp.com/${environment.api}imdb/top/?start=${start}&end=${end}&token=${environment.token}&format=json&data=1`, httpOptions).pipe(
+      catchError(err => {
+        return of(JSON.parse(localStorage.getItem(keys.films)));
+      }),
+      catchError(err => this.getTest()),
+      map((response: any) => {
         return response.data.movies.map((film: any) => {
+          film.isFavorite = false;
+          return film;
+        });
+      })
+    )
+  }
+  getFilmsFromApi(start: number = 1, end: number = 20) {
+    return this.http.get(`${environment.api_themoviedb}movie/top_rated?api_key=${environment.api_key}`).pipe(
+      map((response: any) => {
+        return response.results.map((film: any) => {
           film.isFavorite = false;
           return film;
         });

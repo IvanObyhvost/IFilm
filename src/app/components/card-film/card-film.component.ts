@@ -13,6 +13,7 @@ export class CardFilmComponent  {
   private directorLink: string;
   constructor(private storeService: StoreService) { 
     this.directorLink = environment.directorLink;
+    // this.directorLink = environment.image_url;
   }
   onClickFavorite(ranking: number) {
     this.storeService.toggleFavoriteFilm(ranking);

@@ -43,7 +43,7 @@ import { appRoutes } from './app.routes';
   providers: [
     LoaderService,
     StoreService,
-    FilmService
+    FilmService,
   ],
   bootstrap: [AppComponent]
 })

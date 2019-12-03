@@ -1,8 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Film } from 'src/app/models/film/film';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, of, forkJoin } from 'rxjs';
 import { FilmService } from '../film/film.service';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, switchMap } from 'rxjs/operators';
+import { TrailerService } from '../trailer/trailer.service';
 const keys = {
   films: 'films',
   favoriteFilms: 'favoriteFilms'
@@ -14,7 +15,9 @@ export class StoreService {
   private films: Film[] = [];
   private filmsEvent = new BehaviorSubject<Film[]>([]);
   private favoriteFilms: number[] = [];
-  constructor(private filmService: FilmService) {
+  private favoriteFilmsEvent = new BehaviorSubject<number[]>([]);
+  constructor(private filmService: FilmService,
+              private trailerService: TrailerService) {
     this.getFavoriteFilmsFromLocalStorage();
   }
   private getFavoriteFilmsFromLocalStorage() {
@@ -24,32 +27,47 @@ export class StoreService {
     } catch (error) {
       this.favoriteFilms = [];
     }
+    this.favoriteFilmsEvent.next(this.favoriteFilms);
   }
 
   getTopFilms(start: number = 1, end: number = 20) {
-    return this.filmService.getFilms(start, end).pipe(
+    return forkJoin(
+      this.filmService.getTest(),
+      this.trailerService.getAll()
+    ).pipe(
       map(response => {
-        this.films = response.map(film => {
-          film.isFavorite = this.favoriteFilms.some(ranking => ranking === film.ranking);
+        let [films, trailers] = response;
+        films = films.map((film: Film) => {
+          const trailersData = trailers.find(trailer => trailer.idIMDB === film.idIMDB);
+          if (trailersData) {
+            film.trailers = trailersData.results.sort((a, b) => a.size - b.size);
+          }
           return film;
         });
-        localStorage.setItem(keys.films, JSON.stringify(this.films));
-        return this.films;
+        return films;
       }),
-      catchError(err => {
-        return of(JSON.parse(localStorage.getItem(keys.films)));
-      }),
-      map(films => films),
       catchError(err => {
         return of([]);
       })
     );
   }
+  private getFilms = response => {
+    this.films = response.map(film => {
+      film.isFavorite = this.favoriteFilms.some(ranking => ranking === film.ranking);
+      return film;
+    });
+    localStorage.setItem(keys.films, JSON.stringify(this.films));
+    return this.films;
+  }
   get FavoriteFilms() {
-    return this.filmsEvent.pipe(
+    return this.favoriteFilmsEvent.pipe(
+      switchMap(() => this.filmsEvent),
       map(films => films.filter(f => this.favoriteFilms.includes(f.ranking)))
-      // filter((film: Film[], index: number) => this.favoriteFilms.includes(film[index].ranking))
     );
+    // return this.filmsEvent.pipe(
+    //   map(films => films.filter(f => this.favoriteFilms.includes(f.ranking)))
+    //   // filter((film: Film[], index: number) => this.favoriteFilms.includes(film[index].ranking))
+    // );
   }
 
   get Films() {
@@ -73,6 +91,7 @@ export class StoreService {
         selectedFilm.isFavorite = true;
       }
       localStorage.setItem(keys.favoriteFilms, JSON.stringify(this.favoriteFilms));
+      this.favoriteFilmsEvent.next(this.favoriteFilms);
     }
   }
 

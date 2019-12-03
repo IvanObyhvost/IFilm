@@ -1,4 +1,5 @@
 export class Film {
+    idIMDB: string;
     ranking: number;
     title: string;
     year: number;
@@ -11,4 +12,8 @@ export class Film {
         name: string;
     }];
     isFavorite: boolean;
+    trailers: [{
+        size: number;
+        link: string;
+    }]
 }
