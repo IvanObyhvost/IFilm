@@ -26,8 +26,8 @@ export class StoreService {
     }
   }
 
-  getTopFilms(limit: number) {
-    return this.filmService.get(limit).pipe(
+  getTopFilms(start: number = 1, end: number = 20) {
+    return this.filmService.getFilms(start, end).pipe(
       map(response => {
         this.films = response.map(film => {
           film.isFavorite = this.favoriteFilms.some(ranking => ranking === film.ranking);

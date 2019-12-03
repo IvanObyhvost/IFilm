@@ -18,7 +18,7 @@ import { JoinPipe } from './pipes/join/join.pipe';
 import { LoaderService } from './services/loader/loader.service';
 import { StoreService } from './services/store/store.service';
 import { FilmService } from './services/film/film.service';
-import appRoutes from './app.routes';
+import { appRoutes } from './app.routes';
 
 @NgModule({
   declarations: [

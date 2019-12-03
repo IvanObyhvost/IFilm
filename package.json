@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 10.10.2.127 --disable-host-check",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng build --prod --base-href https://ivanobyhvost.github.io/IFilm/ && ngh --branch=gh-pages --dir=dist/ifilm"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +23,7 @@
     "angular-svg-icon": "^8.0.0",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
+    "movie-trailer": "^2.0.5",
     "ng2-charts": "^2.3.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

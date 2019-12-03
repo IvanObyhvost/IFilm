@@ -9,12 +9,11 @@ import { LoaderService } from './services/loader/loader.service';
 })
 export class AppComponent implements OnInit {
   public title = 'ifilm';
-  private limit = 5;
   constructor(private loaderService: LoaderService,
               private storeService: StoreService) {}
   ngOnInit(): void {
     this.loaderService.setIsLoading(true);
-    this.storeService.getTopFilms(this.limit).subscribe(films => {
+    this.storeService.getTopFilms().subscribe(films => {
       this.storeService.setFilms(films);
       this.loaderService.setIsLoading(false);
     });
