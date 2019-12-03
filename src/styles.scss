@@ -1,8 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~ngx-smart-modal/ngx-smart-modal";
 body {
     margin: 0;
     padding: 0;
 }
+
+
 .btn {
-    
+    margin: 0;
+    color: #fff;
+    background-color: #007ad9;
+    border: 1px solid #007ad9;
+    font-size: 14px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+        background-color: #116fbf;
+        color: #ffffff;
+        border-color: #116fbf;
+    }
+    &-raised{
+        border-radius: 5px;
+    }
+    &-rounded{
+        border-radius: 15px;
+    }
+    &-dark {
+        color: #fff;
+        background: #363c3f;
+        border: 1px solid #363c3f;
+        &:hover {
+            background: #333030;
+            color: #fff;
+            border: 1px solid #333030;
+        }
+    }
+    &-success {
+        color: #ffffff;
+        background-color: #34A835;
+        border: 1px solid #34A835;
+        &:hover {
+            background-color: #107D11;
+            color: #fff;
+            border-color: #107D11;
+        }
+    }
 }
+.ml-1 {
+    margin-left: 0.25rem;
+}
+div.medium-modal {
+    max-width: max-content;
+}
+.small {
+    width: 320px;
+    height: 240px;
+}
+.medium {
+    width: 480px;
+    height: 360px;
+}
+.large {
+    width: 640px;
+    height: 480px;
+}
+.hd720 {
+    width: 960px;
+    height: 720px;
+}
+.hd1080 {
+    width: 1400px;
+    height: 1080px;
+}
+.responsive-container, .responsive-container iframe {
+    max-width:1280px;
+    max-height: 720px;
+}
+    

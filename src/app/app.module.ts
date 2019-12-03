@@ -19,6 +19,9 @@ import { LoaderService } from './services/loader/loader.service';
 import { StoreService } from './services/store/store.service';
 import { FilmService } from './services/film/film.service';
 import { appRoutes } from './app.routes';
+import { ModalComponent } from './components/modal/modal.component';
+import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import { SafePipe } from './pipes/safe/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { appRoutes } from './app.routes';
     DecadesFilmsComponent,
     PieChartComponent,
     JoinPipe,
+    ModalComponent,
+    SafePipe,
   ],
   imports: [
     BrowserModule,
@@ -39,11 +44,12 @@ import { appRoutes } from './app.routes';
     HttpClientModule,
     AngularSvgIconModule,
     ChartsModule,
+    NgxSmartModalModule.forRoot()
   ],
   providers: [
     LoaderService,
     StoreService,
-    FilmService,
+    FilmService
   ],
   bootstrap: [AppComponent]
 })

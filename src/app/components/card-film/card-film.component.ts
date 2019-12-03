@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { Film } from 'src/app/models/film/film';
 import { StoreService } from 'src/app/services/store/store.service';
 import { environment } from 'src/environments/environment';
+import { NgxSmartModalService } from 'ngx-smart-modal';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-card-film',
@@ -11,14 +13,26 @@ import { environment } from 'src/environments/environment';
 export class CardFilmComponent  {
   @Input() film: Film;
   private directorLink: string;
-  constructor(private storeService: StoreService) { 
+  private identifier = 'myModal';
+  constructor(private storeService: StoreService,
+              private ngxSmartModalService: NgxSmartModalService) { 
     this.directorLink = environment.directorLink;
-    // this.directorLink = environment.image_url;
   }
   onClickFavorite(ranking: number) {
     this.storeService.toggleFavoriteFilm(ranking);
   }
   linkForDirector(id: string) {
     window.open(`${this.directorLink}${id}`, '_blank');
+  }
+
+  openTrailer(trailer: any) {
+    const {title} = this.film;
+    const data = {
+      ...trailer,
+      title
+    }
+    const modal = this.ngxSmartModalService.get(this.identifier);
+    modal.setData(data);
+    modal.open();
   }
 }
