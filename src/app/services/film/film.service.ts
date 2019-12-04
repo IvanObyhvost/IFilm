@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, from } from 'rxjs';
 import { delay, map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import data from 'src/assets/data/films.json';
 
 const httpOptions = {
   headers: new HttpHeaders()
@@ -20,7 +21,7 @@ export class FilmService {
 
   constructor(private http: HttpClient) { }
   getTest(start: number = 1, end: number = 20) {
-    return this.http.get('/assets/data/films.json').pipe(
+    return of(data).pipe(
       delay(1500),
       map((response: any) => {
         return response.data.movies.map((film: any) => {
@@ -28,7 +29,7 @@ export class FilmService {
           return film;
         });
       })
-    )
+    );
   }
 
   getFilms(start: number = 1, end: number = 20) {

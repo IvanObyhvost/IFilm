@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import trailers from 'src/assets/data/trailers.json';
+import { of } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders()
@@ -15,11 +17,11 @@ export class TrailerService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get('/assets/data/trailers.json').pipe(
+    return of(trailers).pipe(
       map((response: any) => {
         let {data} = response;
         return data.map(trailer => {
-          trailer.results = trailer.results.filter((result, index, arr) => index === arr.indexOf(result))
+          trailer.results = trailer.results.filter((result, index, arr) => index === arr.findIndex(item => item === result));
           return trailer;
         })
       })
