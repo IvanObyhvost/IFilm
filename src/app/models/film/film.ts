@@ -1,3 +1,6 @@
+import { Director } from './director';
+import { Trailer } from './trailer';
+
 export class Film {
     idIMDB: string;
     ranking: number;
@@ -7,13 +10,7 @@ export class Film {
     countries: string[];
     urlPoster: string;
     genres: string[];
-    directors: [{
-        id: string;
-        name: string;
-    }];
+    directors: Director[];
     isFavorite: boolean;
-    trailers: [{
-        size: number;
-        link: string;
-    }]
+    trailers: Trailer[];
 }
