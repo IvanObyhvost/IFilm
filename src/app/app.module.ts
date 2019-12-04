@@ -22,6 +22,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { SafePipe } from './pipes/safe/safe.pipe';
 import { TrailerService } from './services/trailer/trailer.service';
+import { ScrollUpComponent } from './components/scroll-up/scroll-up.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TrailerService } from './services/trailer/trailer.service';
     JoinPipe,
     ModalComponent,
     SafePipe,
+    ScrollUpComponent,
   ],
   imports: [
     BrowserModule,
