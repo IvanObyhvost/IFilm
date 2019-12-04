@@ -43,31 +43,13 @@ export class StoreService {
   }
   getTopFilms(start: number, end: number) {
     const observablesApi = forkJoin(
-      this.filmService.getFilmsFromApi(start, end),
-      this.trailerService.getAll()
-    );
-    const observablesLocalStorage = forkJoin(
-      this.filmService.getFilmsFromLocalStorage(),
-      this.trailerService.getAll()
-    );
-    const observablesJson = forkJoin(
-      this.filmService.getFilmsFromJson(),
+      this.filmService.get(start, end),
       this.trailerService.getAll()
     );
 
-    return observablesJson.pipe(
-      catchError(err => {
-        console.error(err);
-        return observablesLocalStorage;
-      }),
-      catchError(err => {
-        console.error(err);
-        return observablesJson;
-      }),
+    return observablesApi.pipe(
       map(response => this.getFilmsData(response)),
-      catchError(err => {
-        return of([]);
-      })
+      catchError(err => of([]))
     );
   }
 

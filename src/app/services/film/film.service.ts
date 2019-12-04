@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
+import { delay, map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import data from 'src/assets/data/films.json';
@@ -49,5 +49,17 @@ export class FilmService {
     return this.http.get(url, httpOptions).pipe(
       map((response: any) => this.getFilmsData(response.data.movies))
     );
+  }
+  get(start: number, end: number) {
+    // return this.getFilmsFromApi(start, end).pipe(
+    return this.getFilmsFromJson().pipe(
+      catchError(err => this.recallGet(err, this.getFilmsFromLocalStorage())),
+      catchError(err => this.recallGet(err, this.getFilmsFromJson())),
+      catchError(err => of([]))
+    );
+  }
+  private recallGet(err: any, stream: Observable<any>): Observable<any> {
+    console.error(err);
+    return stream;
   }
 }

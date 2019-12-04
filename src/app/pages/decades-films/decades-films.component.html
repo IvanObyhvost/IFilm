@@ -1,3 +1,6 @@
 <div>
-    <app-pie-chart *ngIf="films.length" [films]="films"></app-pie-chart>
+    <app-pie-chart *ngIf="films?.length; else empty" [films]="films"></app-pie-chart>
+    <ng-template #empty>
+        {{message}}
+    </ng-template>
 </div>

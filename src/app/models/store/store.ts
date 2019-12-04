@@ -1,7 +1,7 @@
 import { IStore } from 'src/app/interfaces/store/IStore';
 import { Film } from '../film/film';
-import { BehaviorSubject } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
+import { switchMap, map, catchError } from 'rxjs/operators';
 
 export class Store implements IStore {
     films: Film[] = [];
@@ -13,7 +13,8 @@ export class Store implements IStore {
         return this.favoriteFilmsIds$.pipe(
             switchMap(() => this.films$),
             map(films => films.filter(film => this.favoriteFilmsIds.includes(film.idIMDB))),
-            map(films => films.filter(film => film.isFavorite))
+            map(films => films.filter(film => film.isFavorite)),
+            catchError(err => of([]))
         );
     }
     setFavoriteFilms(idIMDBs: string[]) {

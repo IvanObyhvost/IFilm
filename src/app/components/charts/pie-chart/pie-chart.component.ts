@@ -23,8 +23,8 @@ export class PieChartComponent implements OnInit {
   }
 
   private setDataToChart() {
-    const countYearForDecade = 10;
-    const decades = this.films.map(film => Math.floor(film.year / countYearForDecade) * countYearForDecade);
+    const yearForDecade = 10;
+    const decades = this.films.map(film => Math.floor(film.year / yearForDecade) * yearForDecade);
     decades.sort((a, b) => a - b);
     const labels = decades.filter((decade, index, arr) => index === arr.findIndex(item => item === decade));
     const data = decades.reduce((acc, el) => {
