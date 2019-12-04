@@ -5,7 +5,7 @@
     <div class="card-film-body">
         <div class="card-film-title">
             <span>{{film.title}}</span>
-            <div class="card-film-favorite" (click)="onClickFavorite(film.ranking)">
+            <div class="card-film-favorite" (click)="onClickFavorite(film.idIMDB)">
                 <svg-icon src="assets/images/icon-favorite.svg" [svgStyle]="{ 
                         'width.px': 20, 
                         'height.px': 20,

@@ -15,11 +15,11 @@ export class CardFilmComponent  {
   private directorLink: string;
   private identifier = 'myModal';
   constructor(private storeService: StoreService,
-              private ngxSmartModalService: NgxSmartModalService) { 
+              private ngxSmartModalService: NgxSmartModalService) {
     this.directorLink = environment.directorLink;
   }
-  onClickFavorite(ranking: number) {
-    this.storeService.toggleFavoriteFilm(ranking);
+  onClickFavorite(idIMDB: string) {
+    this.storeService.toggleFavoriteFilm(idIMDB);
   }
   linkForDirector(id: string) {
     window.open(`${this.directorLink}${id}`, '_blank');

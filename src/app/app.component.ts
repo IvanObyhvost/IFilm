@@ -9,13 +9,21 @@ import { LoaderService } from './services/loader/loader.service';
 })
 export class AppComponent implements OnInit {
   public title = 'ifilm';
+  private start = 1;
+  private end = 20;
   constructor(private loaderService: LoaderService,
-              private storeService: StoreService) {}
+              private storeService: StoreService) { }
   ngOnInit(): void {
     this.loaderService.setIsLoading(true);
-    this.storeService.getTopFilms().subscribe(films => {
-      this.storeService.setFilms(films);
-      this.loaderService.setIsLoading(false);
-    });
+    this.storeService.getTopFilms(this.start, this.end).subscribe(
+      films => {
+        this.storeService.setFilms(films);
+        this.loaderService.setIsLoading(false);
+      },
+      err => {
+        console.error(err);
+        this.loaderService.setIsLoading(false);
+      }
+    );
   }
 }

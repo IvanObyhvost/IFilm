@@ -6,10 +6,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoaderService {
   private isLoading = new BehaviorSubject<boolean>(false);
+  constructor() { }
   get IsLoading() {
     return this.isLoading;
   }
-  constructor() { }
   setIsLoading(value: boolean) {
     this.isLoading.next(value);
   }
