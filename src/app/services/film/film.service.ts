@@ -51,8 +51,7 @@ export class FilmService {
     );
   }
   get(start: number, end: number) {
-    // return this.getFilmsFromApi(start, end).pipe(
-    return this.getFilmsFromJson().pipe(
+    return this.getFilmsFromApi(start, end).pipe(
       catchError(err => this.recallGet(err, this.getFilmsFromLocalStorage())),
       catchError(err => this.recallGet(err, this.getFilmsFromJson())),
       catchError(err => of([]))
