@@ -38,12 +38,14 @@ export class StoreService {
       map(response => {
         let [films, trailers] = response;
         films = films.map((film: Film) => {
+          film.isFavorite = this.favoriteFilms.some(ranking => ranking === film.ranking);
           const trailersData = trailers.find(trailer => trailer.idIMDB === film.idIMDB);
           if (trailersData) {
             film.trailers = trailersData.results.sort((a, b) => a.size - b.size);
           }
           return film;
         });
+        localStorage.setItem(keys.films, JSON.stringify(films));
         return films;
       }),
       catchError(err => {
@@ -51,14 +53,14 @@ export class StoreService {
       })
     );
   }
-  private getFilms = response => {
-    this.films = response.map(film => {
-      film.isFavorite = this.favoriteFilms.some(ranking => ranking === film.ranking);
-      return film;
-    });
-    localStorage.setItem(keys.films, JSON.stringify(this.films));
-    return this.films;
-  }
+  // private getFilms = response => {
+  //   this.films = response.map(film => {
+  //     film.isFavorite = this.favoriteFilms.some(ranking => ranking === film.ranking);
+  //     return film;
+  //   });
+  //   localStorage.setItem(keys.films, JSON.stringify(this.films));
+  //   return this.films;
+  // }
   get FavoriteFilms() {
     return this.favoriteFilmsEvent.pipe(
       switchMap(() => this.filmsEvent),

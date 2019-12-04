@@ -25,6 +25,7 @@
     "chartjs-plugin-datalabels": "^0.7.0",
     "movie-trailer": "^2.0.5",
     "ng2-charts": "^2.3.0",
+    "ngx-smart-modal": "^7.2.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

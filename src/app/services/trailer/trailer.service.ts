@@ -16,7 +16,13 @@ export class TrailerService {
 
   getAll() {
     return this.http.get('/assets/data/trailers.json').pipe(
-      map((response: any) => response.data)
+      map((response: any) => {
+        let {data} = response;
+        return data.map(trailer => {
+          trailer.results = trailer.results.filter((result, index, arr) => index === arr.indexOf(result))
+          return trailer;
+        })
+      })
     )
   }
   getTrailer(title: string) {

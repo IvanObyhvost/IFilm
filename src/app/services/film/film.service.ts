@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { take, toArray, delay, map, catchError } from 'rxjs/operators';
-import { Film } from 'src/app/models/film/film';
+import { delay, map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
