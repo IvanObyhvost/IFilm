@@ -20,7 +20,7 @@ export class FilmService {
 
   constructor(private http: HttpClient) { }
   getTest(start: number = 1, end: number = 20) {
-    return this.http.get('/assets/data/films.json').pipe(
+    return this.http.get('./assets/data/films.json').pipe(
       delay(1500),
       map((response: any) => {
         return response.data.movies.map((film: any) => {

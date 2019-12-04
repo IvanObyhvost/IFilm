@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href https://ivanobyhvost.github.io/IFilm/ && ngh --branch=gh-pages --dir=dist/ifilm"
+    "deploy": "ng build --prod --base-href https://ivanobyhvost.github.io/IFilm/ && ngh --dir=dist/ifilm"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "angular-cli-ghpages": "^0.6.0",
     "angular-svg-icon": "^8.0.0",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
