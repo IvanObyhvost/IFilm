@@ -24,7 +24,6 @@
     "angular-svg-icon": "^8.0.0",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
-    "movie-trailer": "^2.0.5",
     "ng2-charts": "^2.3.0",
     "ngx-smart-modal": "^7.2.1",
     "rxjs": "~6.4.0",

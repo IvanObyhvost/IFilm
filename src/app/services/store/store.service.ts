@@ -49,7 +49,7 @@ export class StoreService {
 
     return observablesApi.pipe(
       map(response => this.getFilmsData(response)),
-      catchError(err => of([]))
+      catchError(() => of([]))
     );
   }
 

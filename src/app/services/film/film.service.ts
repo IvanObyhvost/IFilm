@@ -54,7 +54,7 @@ export class FilmService {
     return this.getFilmsFromApi(start, end).pipe(
       catchError(err => this.recallGet(err, this.getFilmsFromLocalStorage())),
       catchError(err => this.recallGet(err, this.getFilmsFromJson())),
-      catchError(err => of([]))
+      catchError(() => of([]))
     );
   }
   private recallGet(err: any, stream: Observable<any>): Observable<any> {
