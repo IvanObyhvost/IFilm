@@ -12,7 +12,8 @@ export class Store implements IStore {
     getFavoriteFilms() {
         return this.favoriteFilmsIds$.pipe(
             switchMap(() => this.films$),
-            map(films => films.filter(film => this.favoriteFilmsIds.includes(film.idIMDB)))
+            map(films => films.filter(film => this.favoriteFilmsIds.includes(film.idIMDB))),
+            map(films => films.filter(film => film.isFavorite))
         );
     }
     setFavoriteFilms(idIMDBs: string[]) {

@@ -13,9 +13,7 @@ export class FavoriteFilmsComponent implements OnInit {
   constructor(private storeService: StoreService) { }
 
   ngOnInit() {
-    this.storeService.FavoriteFilms.subscribe(favoriteFilms => {
-      this.films = favoriteFilms.filter(x => x.isFavorite);
-    });
+    this.storeService.FavoriteFilms.subscribe(films => this.films = films);
   }
 
 }

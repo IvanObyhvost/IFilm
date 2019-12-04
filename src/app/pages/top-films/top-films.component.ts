@@ -10,12 +10,9 @@ import { StoreService } from 'src/app/services/store/store.service';
 })
 export class TopFilmsComponent implements OnInit {
   public films: Film[];
-  constructor(private storeService: StoreService) {
-
-  }
+  public message = 'The list is empty';
+  constructor(private storeService: StoreService) { }
   ngOnInit() {
-    this.storeService.Films.subscribe(films => {
-      this.films = films;
-    });
+    this.storeService.Films.subscribe(films => this.films = films);
   }
 }

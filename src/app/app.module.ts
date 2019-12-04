@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ChartsModule } from 'ng2-charts';
-
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { TopFilmsComponent } from './pages/top-films/top-films.component';
@@ -20,8 +19,9 @@ import { StoreService } from './services/store/store.service';
 import { FilmService } from './services/film/film.service';
 import { appRoutes } from './app.routes';
 import { ModalComponent } from './components/modal/modal.component';
-import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { SafePipe } from './pipes/safe/safe.pipe';
+import { TrailerService } from './services/trailer/trailer.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,8 @@ import { SafePipe } from './pipes/safe/safe.pipe';
   providers: [
     LoaderService,
     StoreService,
-    FilmService
+    FilmService,
+    TrailerService
   ],
   bootstrap: [AppComponent]
 })

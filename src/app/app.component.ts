@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   private end = 20;
   constructor(private loaderService: LoaderService,
               private storeService: StoreService) { }
+
   ngOnInit(): void {
     this.loaderService.setIsLoading(true);
     this.storeService.getTopFilms(this.start, this.end).subscribe(
