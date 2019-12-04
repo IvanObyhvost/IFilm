@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Film } from 'src/app/models/film/film';
 import { StoreService } from 'src/app/services/store/store.service';
-import { environment } from 'src/environments/environment';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { ModalComponent } from '../modal/modal.component';
+import { openDirectorLink } from 'src/app/utils/util';
+import { Trailer } from 'src/app/models/film/trailer';
+import { TrailerData } from 'src/app/interfaces/modal/trailerData';
 
 @Component({
   selector: 'app-card-film',
@@ -12,25 +13,26 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class CardFilmComponent  {
   @Input() film: Film;
-  private directorLink: string;
   private identifier = 'myModal';
+
   constructor(private storeService: StoreService,
               private ngxSmartModalService: NgxSmartModalService) {
-    this.directorLink = environment.directorLink;
   }
   onClickFavorite(idIMDB: string) {
     this.storeService.toggleFavoriteFilm(idIMDB);
   }
   linkForDirector(id: string) {
-    window.open(`${this.directorLink}${id}`, '_blank');
+    openDirectorLink(id);
   }
 
-  openTrailer(trailer: any) {
-    const {title} = this.film;
-    const data = {
-      ...trailer,
-      title
-    }
+  openTrailer(trailer: TrailerData) {
+    const { title } = this.film;
+    const { key } = trailer;
+    const data: TrailerData = {
+      title,
+      key
+    };
+
     const modal = this.ngxSmartModalService.get(this.identifier);
     modal.setData(data);
     modal.open();

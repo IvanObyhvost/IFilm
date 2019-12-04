@@ -12,30 +12,19 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 export class PieChartComponent implements OnInit {
   @Input() films: Film[] = [];
   public pieChart: PieChart;
-  public pieChartOptions: ChartOptions = {
-    responsive: true,
-    legend: {
-      position: 'left',
-    },
-    plugins: {
-      datalabels: {
-        formatter: (value, ctx) => {
-          const label = ctx.chart.data.labels[ctx.dataIndex];
-          return value;
-        },
-      },
-    }
-  };
-
-  public pieChartPlugins = [pluginDataLabels];
-
   constructor() {
     this.pieChart = new PieChart();
+    this.pieChart.Options = this.getChartOptions();
+    this.pieChart.plugins = [pluginDataLabels];
   }
 
   ngOnInit() {
+    this.setDataToChart();
+  }
+
+  private setDataToChart() {
     const countYearForDecade = 10;
-    const decades = this.films.map(film =>  Math.floor(film.year / countYearForDecade) * countYearForDecade);
+    const decades = this.films.map(film => Math.floor(film.year / countYearForDecade) * countYearForDecade);
     decades.sort((a, b) => a - b);
     const labels = decades.filter((decade, index, arr) => index === arr.findIndex(item => item === decade));
     const data = decades.reduce((acc, el) => {
@@ -46,4 +35,18 @@ export class PieChartComponent implements OnInit {
     this.pieChart.data = labels.map(label => data[label]);
   }
 
+  private getChartOptions() {
+    const options: ChartOptions = {
+      responsive: true,
+      legend: {
+        position: 'left',
+      },
+      plugins: {
+        datalabels: {
+          formatter: (value, ctx) =>  value,
+        },
+      }
+    };
+    return options;
+  }
 }

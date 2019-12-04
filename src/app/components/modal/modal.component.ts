@@ -1,29 +1,27 @@
-import { Component, OnInit, Input, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
-import { NgxSmartModalService, NgxSmartModalComponent } from 'ngx-smart-modal';
-import { environment } from 'src/environments/environment';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { NgxSmartModalComponent } from 'ngx-smart-modal';
 import { QualityType } from 'src/app/models/film/qualityType';
+import { TrailerData } from 'src/app/interfaces/modal/trailerData';
+import { getYoutubeUrl } from 'src/app/utils/util';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
   @ViewChild(TemplateRef, { static: false }) tpl: TemplateRef<any>;
-  @ViewChild('myModal', { static: false }) myModal: NgxSmartModalComponent; 
-  public data: any = null;
+  @ViewChild('myModal', { static: false }) myModal: NgxSmartModalComponent;
+  public data: TrailerData = null;
   public qualityType = QualityType;
-  constructor(private ngxSmartModalService: NgxSmartModalService) { }
-
-  ngOnInit() {
-  }
+  constructor() { }
 
   onClose() {
     this.myModal.removeData();
     this.data = null;
   }
-  onAddData(data: any) {
+  onAddData(data: TrailerData) {
     this.data = data;
-    this.data.key = `${environment.youtube_url}${this.data.key}?rel=0&autoplay=0&controls=1&showinfo=0&ecver=0&enablejsapi=1`;
+    this.data.key = getYoutubeUrl(this.data.key);
   }
 }

@@ -1,3 +1,5 @@
+@import "src/app/styles/variables";
+
 .card-film {
     width: 100%;
     padding: 15px;
@@ -11,12 +13,10 @@
         flex: 1;
         text-align: center;
         img {
+            border-radius: 5px;
             width: auto;
             height: 150px;
             object-fit: contain;
-            &:hover {
-                cursor: pointer;
-            }
         }
     }
     &-body {
@@ -47,13 +47,11 @@
         cursor: pointer;
         text-decoration: underline;
         &:hover {
-            color: rgb(150, 50, 255);
+            color: $color-violet;
         }
     }
     &-buttons {
         margin-top: 4px;
         text-transform: uppercase;
-        // display: flex;
-        // justify-content: flex-end;
     }
 }

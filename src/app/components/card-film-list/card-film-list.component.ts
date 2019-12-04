@@ -10,7 +10,6 @@ import { Film } from 'src/app/models/film/film';
 export class CardFilmListComponent  {
   @Input() message: string;
   @Input() films: Film[];
-  @Input() checkFavorite = false;
   constructor() { }
 
 }

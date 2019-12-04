@@ -1,9 +1,14 @@
-<nav class="menu">
-    <ul>
-        <li *ngFor="let item of menu">
-            <a [routerLink]="item.link" routerLinkActive="active">
-                {{item.name}}
-            </a>
-        </li>
-    </ul>
-</nav>
+<div class="menu">
+    <div class="logo">
+        IFilm
+    </div>
+    <nav *ngIf="menu.items">
+        <ul>
+            <li *ngFor="let item of menu.items">
+                <a [routerLink]="item.link" routerLinkActive="active">
+                    {{item.name}}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

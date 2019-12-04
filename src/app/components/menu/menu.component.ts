@@ -1,31 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'src/app/models/menu/menuItem';
+import { Menu } from 'src/app/models/menu/menu';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit {
-  public menu: object[] = [];
-  constructor() { }
-
-  ngOnInit() {
-    this.menu = this.getMenuItems();
+export class MenuComponent  {
+  public menu: Menu;
+  constructor() {
+    this.menu = new Menu(this.getMenuItems());
   }
-  getMenuItems() {
+  private getMenuItems() {
     return [
-      {
-        name: 'Top 20 films',
-        link: 'top'
-      },
-      {
-        name: 'Movies for decades',
-        link: 'decades'
-      },
-      {
-        name: 'Favorite films',
-        link: 'favorite'
-      }
-    ]
+      new MenuItem('Top 20 films', 'top'),
+      new MenuItem('Films for decades', 'decades'),
+      new MenuItem('Favorite films', 'favorite')
+    ];
   }
 }
