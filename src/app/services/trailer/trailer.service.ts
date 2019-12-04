@@ -15,7 +15,7 @@ export class TrailerService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get('./assets/data/trailers.json').pipe(
+    return this.http.get('/assets/data/trailers.json').pipe(
       map((response: any) => {
         let {data} = response;
         return data.map(trailer => {
