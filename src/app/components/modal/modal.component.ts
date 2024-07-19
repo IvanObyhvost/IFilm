@@ -10,8 +10,8 @@ import { getYoutubeUrl } from 'src/app/utils/util';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent {
-  @ViewChild(TemplateRef, { static: false }) tpl: TemplateRef<any>;
-  @ViewChild('myModal', { static: false }) myModal: NgxSmartModalComponent;
+  @ViewChild(TemplateRef) tpl: TemplateRef<any>;
+  @ViewChild('myModal') myModal: NgxSmartModalComponent;
   public data: TrailerData = null;
   public qualityType = QualityType;
   constructor() { }
