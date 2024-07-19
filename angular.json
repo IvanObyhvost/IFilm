@@ -23,7 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/app/theme/variables.scss", "src/global.scss"],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,

@@ -21,8 +21,19 @@
       "es2018",
       "dom"
     ],
+    "useDefineForClassFields": false,
+    "paths": {
+      "@app/shared/*": [
+        "src/modules/shared/*"
+      ],
+      "@app/core/*": [
+        "src/modules/core/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
+    "strictTemplates": true,
+    "strictInputAccessModifiers": true,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
   },
