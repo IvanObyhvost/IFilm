@@ -19,7 +19,7 @@ import { MenuComponent } from "./modules/shared/components";
     //   relativeLinkResolution: "legacy",
     // }),
     HttpClientModule,
-    // AngularSvgIconModule,
+    AngularSvgIconModule.forRoot(),
     // ChartsModule,
     // NgxSmartModalModule.forRoot(),
     AppRoutingModule,

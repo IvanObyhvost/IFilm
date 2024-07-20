@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "top-page",
+  selector: "top-page.page",
   templateUrl: "./top.page.html",
   styleUrls: ["./top.page.scss"],
 })

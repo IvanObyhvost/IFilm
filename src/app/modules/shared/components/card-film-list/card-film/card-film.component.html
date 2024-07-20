@@ -1,0 +1,56 @@
+<div class="card-film-image">
+  <img [src]="film.urlPoster" />
+</div>
+<div class="card-film-body">
+  <div class="card-film-header">
+    <span class="card-film-title">{{ film.title }}</span>
+    <div
+      class="card-film-favorite"
+      [class.is-selected]="film.isFavorite"
+      (click)="onClickFavorite()"
+    >
+      <app-icon name="icon-favorite"></app-icon>
+    </div>
+  </div>
+  <div class="card-film-content">
+    <div class="card-film-item">
+      <label class="label">Year: </label>
+      <span class="value">{{ film.year }}</span>
+    </div>
+    <div class="card-film-item">
+      <label class="label">Rating: </label>
+      <span class="value">{{ film.rating }}/10</span>
+    </div>
+    <div class="card-film-item">
+      <label class="label">Genres: </label>
+      <span class="value">{{ film.genres | join : ", " }}</span>
+    </div>
+    <div class="card-film-item">
+      <label class="label">Countries: </label>
+      <span class="value">{{ film.countries | join : ", " }}</span>
+    </div>
+    <div class="card-film-item">
+      <label class="label">Directors: </label>
+      <span class="value">
+        <a
+          *ngFor="let director of film.directors; last as isLast"
+          class="card-film-director"
+        >
+          {{ director.name }}
+          <span *ngIf="!isLast">, </span></a
+        >
+      </span>
+    </div>
+    <div class="card-film-item">
+      <label class="label">Watch trailers: </label>
+      <div class="value">
+        <button
+          *ngFor="let trailer of film.trailers"
+          class="btn btn-rounded btn-success ml-1"
+        >
+          {{ trailer.size }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

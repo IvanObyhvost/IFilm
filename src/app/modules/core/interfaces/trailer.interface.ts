@@ -1,4 +1,4 @@
-export class Trailer {
+export interface ITrailer {
   size: number;
   link: string;
   key?: string;

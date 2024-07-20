@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
+import { TrailerService } from "./services";
 
 @NgModule({
   imports: [],
-  providers: [],
+  providers: [TrailerService],
 })
 export class CoreModule {}
