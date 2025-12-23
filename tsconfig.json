@@ -11,7 +11,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ES2022",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "typeRoots": [
@@ -21,8 +21,22 @@
       "es2018",
       "dom"
     ],
+    "useDefineForClassFields": false,
+    "paths": {
+      "@environment": [
+        "src/environments/environment.prod"
+      ],
+      "@app/shared/*": [
+        "src/app/modules/shared/*"
+      ],
+      "@app/core/*": [
+        "src/app/modules/core/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
+    "strictTemplates": true,
+    "strictInputAccessModifiers": true,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
   },
