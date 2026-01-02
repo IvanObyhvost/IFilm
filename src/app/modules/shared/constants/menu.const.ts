@@ -1,6 +1,7 @@
+import { MenuItem } from "../interfaces";
 import { ROUTE_URLS } from "./route-urls.const";
 
-export const MENU = {
+export const MENU: Record<string, MenuItem> = {
   top: {
     name: "Top 20 films",
     link: ROUTE_URLS.top,

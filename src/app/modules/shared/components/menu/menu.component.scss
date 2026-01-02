@@ -4,7 +4,7 @@
   height: 50px;
   margin: 0;
   text-align: center;
-  background-color: #363c3f;
+  background-color: var(--menu-background-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,28 +13,28 @@
 
 .list {
   list-style-type: none;
-  color: #fff;
+  color: var(--menu-link);
   font-size: 18px;
   li {
     display: inline-block;
     margin: 0 15px;
     height: 100%;
     :hover {
-      color: #00e1ff;
+      color: var(--menu-link-active);
     }
     a {
       text-decoration: none;
-      color: #fff;
+      color: var(--menu-link);
     }
     .active {
-      color: #00e1ff;
+      color: var(--menu-link-active);
     }
   }
 }
 
 .logo {
   font: 20pt/18pt sans-serif;
-  color: #00e1ff;
+  color: var(--menu-link-active);
   cursor: default;
   left: 10px;
   top: 15px;

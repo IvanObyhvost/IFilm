@@ -1,3 +1,6 @@
+import { IDirector } from "./director.interface";
+import { ITrailer } from "./trailer.interface";
+
 export interface IFilm {
   idIMDB: string;
   ranking: number;
@@ -13,14 +16,7 @@ export interface IFilm {
     name: string;
   }[];
   runtime: string;
-  directors: {
-    id: string;
-    name: string;
-  }[];
+  directors: IDirector[];
   isFavorite: boolean;
-  trailers: {
-    size: number;
-    link: string;
-    key?: string;
-  }[];
+  trailers: ITrailer[];
 }

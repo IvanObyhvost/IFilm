@@ -2,11 +2,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { MENU } from "../../constants";
 import { NgForOf } from "@angular/common";
 import { RouterModule } from "@angular/router";
-
-interface IMenuItem {
-  name: string;
-  link: string;
-}
+import { MenuItem } from "@app/shared/interfaces";
 
 @Component({
   selector: "app-menu",
@@ -17,5 +13,9 @@ interface IMenuItem {
   imports: [NgForOf, RouterModule],
 })
 export class MenuComponent {
-  public menuItems: IMenuItem[] = Object.values(MENU).map((item) => item);
+  public menuItems: MenuItem[] = Object.values(MENU);
+
+  public trackByIndex(index: number): number {
+    return index;
+  }
 }

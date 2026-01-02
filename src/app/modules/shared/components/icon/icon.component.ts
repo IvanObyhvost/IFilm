@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  NgModule,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { AngularSvgIconModule } from "angular-svg-icon";
 
 @Component({
@@ -11,17 +6,13 @@ import { AngularSvgIconModule } from "angular-svg-icon";
   templateUrl: "./icon.component.html",
   styleUrls: ["./icon.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [AngularSvgIconModule],
 })
 export class IconComponent {
   @Input() name: string;
-  public get path() {
+
+  get path() {
     return "assets/icons/" + this.name + ".svg";
   }
 }
-
-@NgModule({
-  imports: [AngularSvgIconModule],
-  declarations: [IconComponent],
-  exports: [IconComponent],
-})
-export class IconComponentModule {}

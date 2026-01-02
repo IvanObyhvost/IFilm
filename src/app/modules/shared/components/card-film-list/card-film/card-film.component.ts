@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { IFilm } from "@app/core/interfaces";
 import { JoinPipe } from "@app/shared/pipes";
-import { IconComponentModule } from "../..";
+import { IconComponent } from "../..";
+import { StoreService } from "@app/core/services/store/store.service";
 
 @Component({
   selector: "app-card-film",
@@ -10,20 +11,18 @@ import { IconComponentModule } from "../..";
   styleUrls: ["./card-film.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, JoinPipe, IconComponentModule],
+  imports: [CommonModule, JoinPipe, IconComponent],
 })
 export class CardFilmComponent {
   @Input() film: IFilm;
   // private identifier = 'myModal';
-  // constructor(private storeService: StoreService,
-  //             private ngxSmartModalService: NgxSmartModalService) {
-  // }
-  public onClickFavorite() {
-    this.film.idIMDB;
+  constructor(private storeService: StoreService) {
+    // private ngxSmartModalService: NgxSmartModalService) {
   }
-  // onClickFavorite(idIMDB: string) {
-  //   this.storeService.toggleFavoriteFilm(idIMDB);
-  // }
+
+  onClickFavorite() {
+    // this.storeService.toggleFavoriteFilm(film.idIMDB);
+  }
   // linkForDirector(id: string) {
   //   openDirectorLink(id);
   // }

@@ -41,7 +41,7 @@
         >
       </span>
     </div>
-    <div class="card-film-item">
+    <div *ngIf="film.trailers?.length" class="card-film-item">
       <label class="label">Watch trailers: </label>
       <div class="value">
         <button
