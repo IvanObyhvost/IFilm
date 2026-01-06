@@ -31,18 +31,18 @@
       <label class="label">Countries: </label>
       <span class="value">{{ film.countries | join : ", " }}</span>
     </div>
-    <!-- <div class="card-film-item">
+    <div class="card-film-item">
       <label class="label">Directors: </label>
       <span class="value">
-        <a
+        <ng-container
           *ngFor="let director of film.directors; last as isLast"
           class="card-film-director"
         >
           {{ director.name }}
-          <span *ngIf="!isLast">, </span></a
-        >
+          <span *ngIf="!isLast">, </span>
+        </ng-container>
       </span>
-    </div> -->
+    </div>
     <!-- <div *ngIf="film.trailers?.length" class="card-film-item">
       <label class="label">Watch trailers: </label>
       <div class="value">

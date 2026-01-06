@@ -15,10 +15,7 @@ export const routes: Routes = [
   },
   {
     path: "favorite",
-    loadChildren: () =>
-      import("./pages/favorite/favorite-films.module").then(
-        (m) => m.FavoriteFilmsComponentModule
-      ),
+    loadComponent: () => import("./pages/favorite/favorite-films.component"),
   },
   { path: "**", redirectTo: "top" },
 ];

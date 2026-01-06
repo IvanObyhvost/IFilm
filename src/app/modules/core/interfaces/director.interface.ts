@@ -1,4 +1,4 @@
-export interface IDirector {
+export interface Director {
   id: string;
   name: string;
 }

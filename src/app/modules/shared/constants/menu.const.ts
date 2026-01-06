@@ -6,10 +6,10 @@ export const MENU: Record<string, MenuItem> = {
     name: "Top 20 films",
     link: ROUTE_URLS.top,
   },
-  decades: {
-    name: "Films for decades",
-    link: ROUTE_URLS.decades,
-  },
+  // decades: {
+  //   name: "Films for decades",
+  //   link: ROUTE_URLS.decades,
+  // },
   favorite: {
     name: "Favorite films",
     link: ROUTE_URLS.favorite,

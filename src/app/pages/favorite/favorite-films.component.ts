@@ -1,16 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { CardFilmListComponent } from "@app/shared/components/card-film-list";
 
 @Component({
-  selector: "app-favorite-films",
+  selector: "app-favorite-films.page",
   templateUrl: "./favorite-films.component.html",
   styleUrls: ["./favorite-films.component.scss"],
+  standalone: true,
+  imports: [CardFilmListComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FavoriteFilmsComponent implements OnInit {
-  // public films: Film[] = [];
-  // public message = 'You have not added films to your favorites';
-  // constructor(private storeService: StoreService) { }
-
-  ngOnInit() {
-    // this.storeService.FavoriteFilms.subscribe(films => this.films = films);
-  }
-}
+export default class FavoriteFilmsComponent {}

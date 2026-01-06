@@ -1,22 +1,15 @@
-import { IDirector } from "./director.interface";
-import { ITrailer } from "./trailer.interface";
+import { Director } from "./director.interface";
+import { Trailer } from "./trailer.interface";
 
 export interface Film {
   idIMDB: string;
-  ranking: number;
   title: string;
   year: string;
-  releaseDate: string;
   rating: string;
   countries: string[];
   urlPoster: string;
   genres: string[];
-  writers: {
-    id: string;
-    name: string;
-  }[];
-  runtime: string;
-  directors: IDirector[];
+  directors: Director[];
   isFavorite: boolean;
-  trailers: ITrailer[];
+  trailers: Trailer[];
 }

@@ -4,11 +4,12 @@ import {
   Input,
   ChangeDetectionStrategy,
   inject,
-  TrackByFunction,
 } from "@angular/core";
 import { CardFilmComponent } from "./card-film/card-film.component";
 import { FilmsService } from "@app/core/services";
-import { Film } from "src/app/models/film/film";
+import { FilmListType } from "@app/core/types";
+import { Film } from "@app/core/interfaces";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-card-film-list",
@@ -21,9 +22,12 @@ import { Film } from "src/app/models/film/film";
 export class CardFilmListComponent {
   private readonly filmsService = inject(FilmsService);
 
-  @Input() type: "top" | "favorite" = "favorite";
+  @Input() set type(value: FilmListType) {
+    this.films$ = this.filmsService.get(value);
+  }
 
-  films$ = this.filmsService.get();
+  films$!: Observable<Film[]>;
+
   isLoading = true;
 
   trackByFn(index: number, film: any): string {
