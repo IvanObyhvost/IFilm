@@ -1,15 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { CardFilmListComponent } from "@app/shared/components/card-film-list";
 
 @Component({
   selector: "top-page.page",
   templateUrl: "./top.page.html",
   styleUrls: ["./top.page.scss"],
+  imports: [CardFilmListComponent],
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TopPage implements OnInit {
-  // public films: Film[];
-  // public message = "The list is empty";
-  // constructor(private storeService: StoreService) { }
-  ngOnInit() {
-    // this.storeService.Films.subscribe(films => this.films = films);
-  }
-}
+export default class TopPage {}

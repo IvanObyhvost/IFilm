@@ -7,7 +7,6 @@ import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { NgxSmartModalModule } from "ngx-smart-modal";
-import { CoreModule } from "./modules/core/core.module";
 import { MenuComponent } from "./modules/shared/components";
 
 @NgModule({
@@ -23,7 +22,6 @@ import { MenuComponent } from "./modules/shared/components";
     // ChartsModule,
     // NgxSmartModalModule.forRoot(),
     AppRoutingModule,
-    CoreModule,
     MenuComponent,
   ],
   providers: [],

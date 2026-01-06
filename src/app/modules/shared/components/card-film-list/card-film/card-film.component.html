@@ -1,6 +1,7 @@
 <div class="card-film-image">
   <img [src]="film.urlPoster" />
 </div>
+
 <div class="card-film-body">
   <div class="card-film-header">
     <span class="card-film-title">{{ film.title }}</span>
@@ -12,6 +13,7 @@
       <app-icon name="icon-favorite"></app-icon>
     </div>
   </div>
+
   <div class="card-film-content">
     <div class="card-film-item">
       <label class="label">Year: </label>
@@ -29,7 +31,7 @@
       <label class="label">Countries: </label>
       <span class="value">{{ film.countries | join : ", " }}</span>
     </div>
-    <div class="card-film-item">
+    <!-- <div class="card-film-item">
       <label class="label">Directors: </label>
       <span class="value">
         <a
@@ -40,8 +42,8 @@
           <span *ngIf="!isLast">, </span></a
         >
       </span>
-    </div>
-    <div *ngIf="film.trailers?.length" class="card-film-item">
+    </div> -->
+    <!-- <div *ngIf="film.trailers?.length" class="card-film-item">
       <label class="label">Watch trailers: </label>
       <div class="value">
         <button
@@ -51,6 +53,6 @@
           {{ trailer.size }}
         </button>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { IDirector } from "./director.interface";
 import { ITrailer } from "./trailer.interface";
 
-export interface IFilm {
+export interface Film {
   idIMDB: string;
   ranking: number;
   title: string;

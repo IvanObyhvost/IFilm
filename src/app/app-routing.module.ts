@@ -4,8 +4,7 @@ import { NgModule } from "@angular/core";
 export const routes: Routes = [
   {
     path: "top",
-    loadChildren: () =>
-      import("./pages/top/top.module").then((m) => m.TopPageModule),
+    loadComponent: () => import("./pages/top/top.page"),
   },
   {
     path: "decades",

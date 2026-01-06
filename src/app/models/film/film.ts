@@ -5,7 +5,7 @@ export class Film {
   idIMDB: string;
   ranking: number;
   title: string;
-  year: number;
+  // year: number;
   rating: number;
   countries: string[];
   urlPoster: string;

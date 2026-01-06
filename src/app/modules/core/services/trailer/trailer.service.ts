@@ -3,7 +3,6 @@ import { map, delay } from "rxjs/operators";
 import trailersData from "src/assets/data/trailers.json";
 import { of } from "rxjs";
 import { environment } from "src/environments/environment";
-import { CoreModule } from "../../core.module";
 
 @Injectable()
 export class TrailerService {

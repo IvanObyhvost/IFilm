@@ -1,16 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Film } from "src/app/models/film/film";
 import { of, forkJoin } from "rxjs";
-import { FilmService } from "../film/film.service";
 import { map, catchError } from "rxjs/operators";
 import { TrailerService } from "../trailer/trailer.service";
 import { IStore } from "src/app/interfaces/store/IStore";
 import { Store } from "src/app/models/store/store";
 import { environment } from "src/environments/environment";
-import { CoreModule } from "../../core.module";
 
 @Injectable({
-  providedIn: CoreModule,
+  providedIn: "root",
 })
 export class StoreService {
   // private store: IStore;

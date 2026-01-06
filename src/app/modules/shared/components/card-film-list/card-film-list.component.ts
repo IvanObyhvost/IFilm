@@ -1,15 +1,14 @@
 import { CommonModule } from "@angular/common";
 import {
   Component,
-  OnInit,
   Input,
   ChangeDetectionStrategy,
   inject,
+  TrackByFunction,
 } from "@angular/core";
-import { Observable, of } from "rxjs";
 import { CardFilmComponent } from "./card-film/card-film.component";
-import { IFilm } from "@app/core/interfaces";
-import { FilmService } from "@app/core/services/film/film.service";
+import { FilmsService } from "@app/core/services";
+import { Film } from "src/app/models/film/film";
 
 @Component({
   selector: "app-card-film-list",
@@ -19,14 +18,15 @@ import { FilmService } from "@app/core/services/film/film.service";
   standalone: true,
   imports: [CommonModule, CardFilmComponent],
 })
-export class CardFilmListComponent implements OnInit {
-  @Input() type: "top" | "favorite" = "favorite";
-  @Input() noData: string;
-  public films$: Observable<IFilm[]>;
-  public isLoading = true;
-  private readonly filmService = inject(FilmService);
+export class CardFilmListComponent {
+  private readonly filmsService = inject(FilmsService);
 
-  ngOnInit(): void {
-    this.films$ = this.filmService.get();
+  @Input() type: "top" | "favorite" = "favorite";
+
+  films$ = this.filmsService.get();
+  isLoading = true;
+
+  trackByFn(index: number, film: any): string {
+    return film.idIMDB;
   }
 }
